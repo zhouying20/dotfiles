@@ -4,7 +4,7 @@ set -euxo pipefail # -e=-o errexit, -u=-o nounset
 BREW_PREFIX=$XDG_DATA_HOME/linuxbrew
 if [ ! -d $BREW_PREFIX ]; then
     git clone https://github.com/Homebrew/brew $BREW_PREFIX/Homebrew
-    ln -s $BREW_PREFIX/Homebrew/bin/brew $BREW_PREFIX/bin
+    ln -s $BREW_PREFIX/Homebrew/bin $BREW_PREFIX/bin
 fi
 eval $($BREW_PREFIX/bin/brew shellenv)
 

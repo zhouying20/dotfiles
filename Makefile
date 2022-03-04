@@ -6,15 +6,18 @@ export XDG_CONFIG_HOME = $(HOME)/.config
 export XDG_CACHE_HOME = $(HOME)/.cache
 export XDG_DATA_HOME = $(HOME)/.local/share
 
+ifeq ($(OS),linux)
+export PATH := /home/linuxbrew/.linuxbrew/bin/:$(XDG_DATA_HOME)/linuxbrew/bin/:$(PATH)
+endif
 
 all: setup link
-	chmod 700 $(XDG_CONFIG_HOME)/gnupg
-	chmod 600 $(XDG_CONFIG_HOME)/gnupg/*
+	#chmod 700 $(XDG_CONFIG_HOME)/gnupg
+	#chmod 600 $(XDG_CONFIG_HOME)/gnupg/*
 
 	mkdir -p $(XDG_CACHE_HOME)/ssh
 
 setup:
-	cd $(DOTFILES_DIR)/$(OS) && . ./setup.sh
+	cd $(DOTFILES_DIR)/bootstrap/$(OS) && . ./setup.sh
 
 link:
 	for f in $$(ls -A $(DOTFILES_DIR)/env); do \
