@@ -58,35 +58,37 @@ alias export_proxy='export https_proxy=http://127.0.0.1:18123 http_proxy=http://
 # disable rm
 alias rm='echo "This is not the command you are looking for."; false'
 ts () {
-    if command -v trash > /dev/null; then
-        trash -F "$@"
-    elif command -v trash-put > /dev/null; then
-        trash-put "$@"
-    else
-        echo "Neither trash (https://hasseg.org/trash/) or trash-cli (https://github.com/andreafrancia/trash-cli) installed."
-        false
-    fi
+  if [[ ! command -v trash > /dev/null]]; then
+    echo "Neither trash (https://hasseg.org/trash/) or trash-cli (https://github.com/andreafrancia/trash-cli) installed."
+    false
+  fi
+
+  if [[ $VENDOR == apple ]]; then
+    trash -F "$@"
+  else
+    trash-put "$@"
+  fi
 }
 
 # lazy load conda
 conda () {
-    unfunction conda
+  unfunction conda
 
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$("$CONDA_HOME/bin/conda" "shell.zsh" "hook" 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$("$CONDA_HOME/bin/conda" "shell.zsh" "hook" 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+  else
+    if [ -f "$CONDA_HOME/etc/profile.d/conda.sh" ]; then
+      . "$CONDA_HOME/etc/profile.d/conda.sh"
     else
-        if [ -f "$CONDA_HOME/etc/profile.d/conda.sh" ]; then
-            . "$CONDA_HOME/etc/profile.d/conda.sh"
-        else
-            export PATH="$CONDA_HOME/bin:$PATH"
-        fi
+      export PATH="$CONDA_HOME/bin:$PATH"
     fi
-    unset __conda_setup
-    # <<< conda initialize <<<
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
 
-    conda "$@"
+  conda "$@"
 }
 # conda activate &> /dev/null

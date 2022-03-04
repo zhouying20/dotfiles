@@ -12,7 +12,7 @@
 hash -d z=$ZDOTDIR
 hash -d zp=$znap_dir
 if [[ $VENDOR == apple ]]; then
-    hash -d icloud="~/Library/Mobile Documents/com~apple~CloudDocs"
+  hash -d icloud="~/Library/Mobile Documents/com~apple~CloudDocs"
 fi
 
 # Change dirs without `cd`. Just type the dir and press enter.
