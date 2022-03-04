@@ -58,7 +58,7 @@ alias export_proxy='export https_proxy=http://127.0.0.1:18123 http_proxy=http://
 # disable rm
 alias rm='echo "This is not the command you are looking for."; false'
 ts () {
-  if [[ ! command -v trash > /dev/null]]; then
+  if [![ command -v trash > /dev/null ]]; then
     echo "Neither trash (https://hasseg.org/trash/) or trash-cli (https://github.com/andreafrancia/trash-cli) installed."
     false
   fi

@@ -13,6 +13,7 @@ export -UT INFOPATH infopath  # -T creates a "tied" pair; see below.
 # export MANPATH=$HOME/.local/share/man:/usr/local/share/man:/usr/share/man
 # export INFOPATH=$HOME/.local/share/info:/usr/local/share/info:/usr/share/info
 
+export GPG_TTY=$(tty)
 
 # $PATH and $path (and also $FPATH and $fpath, etc.) are "tied" to each other.
 # Modifying one will also modify the other.
@@ -44,7 +45,7 @@ case $OS in
 
     for pkg in "coreutils" "findutils" "gnu-sed" "gnu-tar" "grep"; do
         # BSD flavour -> GNU flavour
-        path=( /usr/local/opt/$pkg/libexec/gnubin $path)
+        path=( /usr/local/opt/$pkg/libexec/gnubin $path )
     done
 
     export CONDA_HOME=/usr/local/Caskroom/miniconda/base
@@ -87,7 +88,7 @@ fi
 
 export CONDARC=$XDG_CONFIG_HOME/conda/condarc
 # export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
-# export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 # export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 # export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 # export MACHINE_STORAGE_PATH=$XDG_DATA_HOME/docker-machine
