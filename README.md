@@ -1,0 +1,7 @@
+# dotfiles
+
+```
+make
+```
+
+👌 Enjoy!

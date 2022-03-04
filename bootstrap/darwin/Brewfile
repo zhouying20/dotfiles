@@ -1,0 +1,62 @@
+tap "buo/cask-upgrade"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+brew "aria2"
+brew "coreutils"
+brew "findutils"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "grep"
+brew "mackup"
+brew "mas"
+brew "ruby"
+brew "starship"
+brew "stow"
+brew "tmux"
+brew "trash"
+brew "vim"
+brew "vivid"
+brew "wget"
+brew "zsh"
+cask "alfred"
+cask "alt-tab"
+cask "avibrazil-rdm"
+cask "coconutbattery"
+cask "dozer"
+cask "font-jetbrains-mono-nerd-font"
+cask "free-download-manager"
+cask "iina"
+cask "iterm2"
+cask "keka"
+cask "maccy"
+cask "mactex"
+cask "miniconda"
+cask "mongodb-compass"
+cask "monitorcontrol"
+cask "notion"
+cask "pdf-expert"
+cask "postman"
+cask "qbittorrent"
+cask "rectangle"
+cask "tencent-meeting"
+cask "typora"
+cask "visual-studio-code"
+mas "1Password 7", id: 1333542190
+mas "AdGuard for Safari", id: 1440147259
+mas "Craft", id: 1487937127
+mas "Feishu", id: 1551632588
+mas "Grammarly for Safari", id: 1462114288
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft OneNote", id: 784801555
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Word", id: 462054704
+mas "NeteaseMusic", id: 944848654
+mas "Octotree", id: 1457450145
+mas "OneTab", id: 1540160809
+mas "QQ", id: 451108668
+mas "Tampermonkey", id: 1482490089
+mas "Telegram", id: 747648890
+mas "WeChat", id: 836500024
