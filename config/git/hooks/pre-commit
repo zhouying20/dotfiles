@@ -1,0 +1,6 @@
+#!/bin/zsh
+git fetch -q && git diff --check @ &&
+    {
+      local tests=$( git rev-parse --git-dir )/run-tests.zsh
+      [[ ! -x $tests ]] || $tests
+    }

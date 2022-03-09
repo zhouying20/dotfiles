@@ -14,7 +14,7 @@ all: setup link
 	#chmod 700 $(XDG_CONFIG_HOME)/gnupg
 	#chmod 600 $(XDG_CONFIG_HOME)/gnupg/*
 
-	mkdir -p $(XDG_CACHE_HOME)/ssh
+	mkdir -p $(XDG_CACHE_HOME)/zsh $(XDG_CACHE_HOME)/ssh
 
 setup:
 	cd $(DOTFILES_DIR)/bootstrap/$(OS) && . ./setup.sh

@@ -9,15 +9,19 @@
 [core]
 	autocrlf = false
 	editor = code --wait
-	hooksPath = $XDA_CONFIG_HOME/git/hooks
+	hooksPath = ~/.config/git/hooks
 [remote]
 	pushdefault = origin
 [push]
 	default = current
 [alias]
+	co = checkout
+	sc = switch
+	cm = commit
+	br = branch
 	last = log -1
 	unstage = reset HEAD
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	clog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	random = !"git commit -am \"$(echo $(curl -s http://whatthecommit.com/index.txt)\"\")\""
 	fire = !"git add -A; git commit -am \"fire!!!\"; git pull --rebase; git push"
 [diff "gpg"]

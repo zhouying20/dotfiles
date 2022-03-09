@@ -7,7 +7,7 @@
 #
 
 #
-# znap clean && rm -rf $XDG_CACHE_HOME/zsh-snap/eval/* to get a clean start
+# znap clean && trs $XDG_CACHE_HOME/zsh-snap/eval/* to get a clean start
 #
 
 # Tell zsh where to store history.
@@ -38,9 +38,8 @@ HISTSIZE=$(( 1.2 * SAVEHIST ))  # Zsh recommended value
 # hist_expire_dups_first  Remove the oldest history event that has a duplicate to be lost before losing a unique event from the list.
 # hist_ignore_space       Not adding command lines with the first character on the line being a space.
 # hist_verify             Perform history expansion and reload the line into the editing buffer.
-setopt share_history \
-    hist_fcntl_lock hist_ignore_all_dups \
-    hist_expire_dups_first hist_ignore_space hist_verify
+setopt share_history hist_fcntl_lock hist_ignore_all_dups \
+       hist_expire_dups_first hist_ignore_space hist_verify
 
 
 zshaddhistory() {

@@ -10,8 +10,4 @@
 !**/gnupg/gpg-agent.conf
 !**/gnupg/public.asc
 
-### ZSH ###
-config/zsh/plugins/
-config/zsh/.zcompdump
-
 *.zwc

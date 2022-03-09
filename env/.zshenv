@@ -18,6 +18,11 @@
 # value to it.
 # To set a default value that is returned *without* setting X, use ${X:-Y}
 # As in other shells, ~ expands to $HOME _at the beginning of a value only._
+
+# ${X:=Y} conditionally assign a variable which set X to "Y" if X is not set
+# or is empty string.
+# : is a colon, the colon is a null command that does nothing and ignores
+# its arguments. It is built into bash so a new process is not created.
 : ${XDG_CACHE_HOME:=~/.cache}
 : ${XDG_CONFIG_HOME:=~/.config}
 : ${XDG_DATA_HOME:=~/.local/share}

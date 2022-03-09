@@ -9,10 +9,11 @@
 # Create shortcuts for your favorite directories.
 # `hash -d <name>=<path>` makes ~<name> a shortcut for <path>.
 # You can use this ~name anywhere you would specify a dir, not just with `cd`!
+hash -d d="$HOME/.dotfiles"
 hash -d z=$ZDOTDIR
 hash -d zp=$znap_dir
 if [[ $VENDOR == apple ]]; then
-  hash -d icloud="~/Library/Mobile Documents/com~apple~CloudDocs"
+  hash -d icloud="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 fi
 
 # Change dirs without `cd`. Just type the dir and press enter.

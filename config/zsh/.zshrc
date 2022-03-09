@@ -12,7 +12,7 @@
 # Here, it enables us to use scoped variables in our dotfiles.
 () {
   # `local` sets the variable's scope to this function and its descendendants.
-  local znap_dir=$XDG_CONFIG_HOME/zsh/plugins  # Where to keep repos and plugins
+  local znap_dir=$XDG_DATA_HOME/zsh/plugins  # Where to keep repos and plugins
 
   # Load all of the files in rc.d that start with <number>- and end in .zsh
   # (n) sorts the results in numerical order.

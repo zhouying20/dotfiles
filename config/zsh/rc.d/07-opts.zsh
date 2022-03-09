@@ -25,3 +25,7 @@ setopt GLOB_STAR_SHORT
 
 # Sort numbers numerically, not lexicographically.
 setopt NUMERIC_GLOB_SORT
+
+# Enable pip completion
+znap function _pip_completion pip 'eval "$( pip completion --zsh )"'
+compctl -K _pip_completion pip

@@ -6,10 +6,12 @@
 # Always set aliases _last,_ so they don't class with function definitions.
 #
 
+# Note that, unlike Bash, there's no need to inform Zsh's completion system
+# of your aliases. It will figure them out automatically.
+
 # These aliases enable us to paste example code into the terminal without the
 # shell complaining about the pasted prompt symbol.
 alias %= \$=
-
 
 # zmv lets you batch rename (or copy or link) files by using pattern matching.
 # https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#index-zmv
@@ -18,15 +20,33 @@ alias zmv='zmv -Mv'
 alias zcp='zmv -Cv'
 alias zln='zmv -Lv'
 
-# Note that, unlike Bash, there's no need to inform Zsh's completion system
-# of your aliases. It will figure them out automatically.
+alias cp='cp -i'
+alias mv='mv -i'
+alias df='df -hT'
 
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# GNU flavour alias
+alias ls="ls --color=auto"
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lAh'
+alias grep="grep --color=auto"
+
+# Tmux alias
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
+# alias tmuxconf='$EDITOR $ZSH_TMUX_CONFIG'
 
 # Set $PAGER if it hasn't been set yet. We need it below.
 # `:` is a builtin command that does nothing. We use it here to stop Zsh from
 # evaluating the value of our $expansion as a command.
 : ${PAGER:=less}
-
 
 # Associate file .extensions with programs.
 # This lets you open a file just by typing its name and pressing enter.
@@ -35,29 +55,22 @@ alias -s {css,gradle,html,js,json,md,patch,properties,txt,xml,yml}=$PAGER
 alias -s gz='gzip -l'
 alias -s {log,out}='tail -F'
 
-
 # Use `< file` to quickly view the contents of any file.
 READNULLCMD=$PAGER  # Set the program to use for this.
 
-
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias cp='cp -i'
-alias df='df -hT'
-alias mv='mv -i'
-alias ls="ls --color=tty"
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lAh'
-alias grep="grep --color=auto"
+# Quick functions
 alias paths='echo -e ${PATH//:/\\n}'
+alias fpaths='echo -e ${FPATH//:/\\n}'
 alias iplocal="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+if [[ $VENDOR == apple ]]; then
+  alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
+  alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+fi
 
-alias export_proxy='export https_proxy=http://127.0.0.1:18123 http_proxy=http://127.0.0.1:18123 all_proxy=socks5://127.0.0.1:18123'
-
-# disable rm
+# Disable rm
 alias rm='echo "This is not the command you are looking for."; false'
-ts () {
+# ts already set for tmux
+trs () {
   if ! command -v trash > /dev/null; then
     echo "Neither trash (https://hasseg.org/trash/) or trash-cli (https://github.com/andreafrancia/trash-cli) installed."
     return false
@@ -70,7 +83,7 @@ ts () {
   fi
 }
 
-# lazy load conda
+# Lazy load conda
 conda () {
   unfunction conda
 
@@ -92,3 +105,36 @@ conda () {
   conda "$@"
 }
 # conda activate &> /dev/null
+
+# Determine size of a file or total size of a directory
+fs () {
+  if du -b /dev/null > /dev/null 2>&1; then
+    local arg=-sbh
+  else
+    local arg=-sh
+  fi
+
+  if [[ -n "$@" ]]; then
+    du $arg -- "$@"
+  else
+    du $arg .[^.]* *
+  fi
+}
+
+local proxy_port=18123
+proxy () {
+  export http_proxy=http://127.0.0.1:$proxy_port
+  export https_proxy=http://127.0.0.1:$proxy_port
+  export all_proxy=socks5://127.0.0.1:$proxy_port
+  export no_proxy=localhost, 127.0.0.0/8, *.local, timestamp.apple.com
+  # export no_proxy=localhost, 127.0.0.0/8, *.local, timestamp.apple.com, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
+  echo "Proxy on"
+}
+noproxy () {
+  unset http_proxy
+  unset https_proxy
+  unset all_proxy
+  unset no_proxy
+  echo "Proxy off"
+}
+proxy &> /dev/null

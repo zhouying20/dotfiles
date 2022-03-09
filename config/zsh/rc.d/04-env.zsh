@@ -13,6 +13,7 @@ export -UT INFOPATH infopath  # -T creates a "tied" pair; see below.
 # export MANPATH=$HOME/.local/share/man:/usr/local/share/man:/usr/share/man
 # export INFOPATH=$HOME/.local/share/info:/usr/local/share/info:/usr/share/info
 
+export EDITOR=vim
 export GPG_TTY=$(tty)
 
 # $PATH and $path (and also $FPATH and $fpath, etc.) are "tied" to each other.
@@ -43,9 +44,9 @@ case $OS in
   ( darwin )
     export SHELL_SESSIONS_DISABLE=1
 
+    # BSD flavour -> GNU flavour
     for pkg in "coreutils" "findutils" "gnu-sed" "gnu-tar" "grep"; do
-        # BSD flavour -> GNU flavour
-        path=( /usr/local/opt/$pkg/libexec/gnubin $path )
+      path=( /usr/local/opt/$pkg/libexec/gnubin $path )
     done
 
     export CONDA_HOME=/usr/local/Caskroom/miniconda/base
@@ -62,9 +63,6 @@ case $OS in
     export LANGUAGE=en
 
     # export NPM_CONFIG_PREFIX=$HOME/.local ubuntu
-
-    # [ -d /home/linuxbrew/.linuxbrew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-    # [ -d $XDG_DATA_HOME/linuxbrew ] && eval $($XDG_DATA_HOME/linuxbrew/bin/brew shellenv)
 
     export CONDA_HOME=$XDG_DATA_HOME/miniconda
     path=(
@@ -95,4 +93,6 @@ export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 # export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+
+### Hardcoded
 export VIMINIT="set nocp | source $XDG_CONFIG_HOME/vim/vimrc"
