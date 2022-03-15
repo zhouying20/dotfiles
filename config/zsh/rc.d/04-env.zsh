@@ -29,7 +29,8 @@ path=(
     /usr/bin
     /bin
     /usr/local/sbin
-    /usr/sbin:/sbin
+    /usr/sbin
+    /sbin
 )
 
 # Add your functions to your $fpath, so you can autoload them.
@@ -84,15 +85,22 @@ if command -v brew > /dev/null; then
   fpath+=( $HOMEBREW_PREFIX/share/zsh/site-functions )
 fi
 
+## conda
 export CONDARC=$XDG_CONFIG_HOME/conda/condarc
+## docker
 # export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
+# export MACHINE_STORAGE_PATH=$XDG_DATA_HOME/docker-machine
+## gpg
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+## python
 # export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 # export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
-# export MACHINE_STORAGE_PATH=$XDG_DATA_HOME/docker-machine
-# export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 # export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
+## npm
+# export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+## starship
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 
 ### Hardcoded
+## vim
 export VIMINIT="set nocp | source $XDG_CONFIG_HOME/vim/vimrc"
