@@ -97,7 +97,7 @@ export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 # export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 # export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 ## npm
-# export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 ## starship
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 
