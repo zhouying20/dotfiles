@@ -137,4 +137,6 @@ noproxy () {
   unset no_proxy
   echo "Proxy off"
 }
-proxy &> /dev/null
+if lsof -Pi :18123 -sTCP:LISTEN > /dev/null; then
+  proxy &> /dev/null
+fi

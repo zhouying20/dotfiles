@@ -14,7 +14,7 @@
 # $VENDOR and $OSTYPE let us check what kind of machine we're on.
 if [[ $VENDOR == apple ]]; then
   # On macOS, store it in iCloud, so it syncs across multiple Macs.
-  HISTFILE=~/Library/Mobile\ Documents/com\~apple\~CloudDocs/shared_data/zsh_history
+  HISTFILE=~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Share/zsh_history
 else
   HISTFILE=${XDG_DATA_HOME:=~/.local/share}/zsh/history
 fi

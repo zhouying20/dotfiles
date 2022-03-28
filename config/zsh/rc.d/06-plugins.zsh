@@ -49,6 +49,8 @@ zstyle ':completion:*:processes' command 'ps -afu $USER'
 zstyle ':autocomplete:*' min-input 1
 zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':autocomplete:*' recent-dirs zoxide
+zstyle ':autocomplete:*' fzf-completion yes
 
 # Load some plugins from oh-my-zsh
 znap source ohmyzsh/ohmyzsh plugins/vscode
