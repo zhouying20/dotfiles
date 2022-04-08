@@ -126,17 +126,16 @@ proxy () {
   export http_proxy=http://127.0.0.1:$proxy_port
   export https_proxy=http://127.0.0.1:$proxy_port
   export all_proxy=socks5://127.0.0.1:$proxy_port
-  export no_proxy=localhost, 127.0.0.0/8, *.local, timestamp.apple.com
-  # export no_proxy=localhost, 127.0.0.0/8, *.local, timestamp.apple.com, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
+  # export no_proxy='localhost,127.0.0.0/8,*.local,timestamp.apple.com,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12'
   echo "Proxy on"
 }
 noproxy () {
   unset http_proxy
   unset https_proxy
   unset all_proxy
-  unset no_proxy
+  # unset no_proxy
   echo "Proxy off"
 }
-if lsof -Pi :18123 -sTCP:LISTEN > /dev/null; then
+if lsof -Pi:$proxy_port -sTCP:LISTEN > /dev/null; then # check if proxy port opened
   proxy &> /dev/null
 fi
