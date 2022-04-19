@@ -62,6 +62,7 @@ case $OS in
     export DEBIAN_PREVENT_KEYBOARD_CHANGES=1
     export skip_global_compinit=1
     export LANGUAGE=en
+    export TZ=Asia/Shanghai
 
     # export NPM_CONFIG_PREFIX=$HOME/.local ubuntu
 

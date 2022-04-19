@@ -11,3 +11,4 @@
 !**/gnupg/public.asc
 
 *.zwc
+config/zsh/.zcompdump
