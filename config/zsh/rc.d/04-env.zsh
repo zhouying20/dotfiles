@@ -43,8 +43,6 @@ fpath=(
 local OS=$(uname -s | tr A-Z a-z)
 case $OS in
   ( darwin )
-    export SHELL_SESSIONS_DISABLE=1
-
     # BSD flavour -> GNU flavour
     for pkg in "coreutils" "findutils" "gnu-sed" "gnu-tar" "grep"; do
       path=( /usr/local/opt/$pkg/libexec/gnubin $path )
@@ -63,8 +61,6 @@ case $OS in
     export skip_global_compinit=1
     export LANGUAGE=en
     export TZ=Asia/Shanghai
-
-    # export NPM_CONFIG_PREFIX=$HOME/.local ubuntu
 
     export CONDA_HOME=$XDG_DATA_HOME/miniconda
     path=(

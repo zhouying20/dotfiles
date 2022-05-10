@@ -121,7 +121,7 @@ fs () {
   fi
 }
 
-local proxy_port=18123
+proxy_port=18123
 proxy () {
   export http_proxy=http://127.0.0.1:$proxy_port
   export https_proxy=http://127.0.0.1:$proxy_port

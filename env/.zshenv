@@ -29,4 +29,8 @@
 : ${XDG_STATE_HOME:=~/.local/state}
 export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME
 
+if [[ $VENDOR == apple ]]; then
+  export SHELL_SESSIONS_DISABLE=1
+fi
+
 ZDOTDIR=${XDG_CONFIG_HOME:=~/.config}/zsh
