@@ -121,6 +121,19 @@ fs () {
   fi
 }
 
+# add $(pwd) to PYTHONPATH
+ppwd () {
+  if [[ -z "$PYTHONPATH" ]]; then
+    export PYTHONPATH=$(pwd)
+  else
+    export PYTHONPATH=$(pwd):$PYTHONPATH
+  fi
+}
+
+pclr() {
+  unset PYTHONPATH
+}
+
 proxy_port=18123
 proxy () {
   export http_proxy=http://127.0.0.1:$proxy_port
