@@ -7,7 +7,7 @@ export XDG_CACHE_HOME = $(HOME)/.cache
 export XDG_DATA_HOME = $(HOME)/.local/share
 
 ifeq ($(OS),linux)
-export PATH := /home/linuxbrew/.linuxbrew/bin/:$(XDG_DATA_HOME)/linuxbrew/bin/:$(PATH)
+export PATH := /home/linuxbrew/.linuxbrew/bin/:$(XDG_DATA_HOME)/linuxbrew/bin:$(XDG_DATA_HOME)/miniconda/base/bin/:$(PATH)
 endif
 
 all: setup link

@@ -12,7 +12,7 @@ local -a plugins=(
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
   marlonrichert/zsh-edit              # Better keyboard shortcuts
   marlonrichert/zsh-hist              # Edit history from the command line.
-  # marlonrichert/zcolors               # Colors for completions and Git
+  marlonrichert/zcolors               # Colors for completions and Git
   esc/conda-zsh-completion            # ZSH completion for conda
   le0me55i/zsh-extract
 )
@@ -42,15 +42,16 @@ done
 # If your connection is VERY slow, then you might want to disable
 # autocompletion completely and use only tab completion instead:
 #   zstyle ':autocomplete:*' async no
-zstyle ':completion:*' file-sort date
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*:paths' path-completion yes
-zstyle ':completion:*:processes' command 'ps -afu $USER'
 zstyle ':autocomplete:*' min-input 1
 zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' recent-dirs zoxide
 zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':completion:*' file-sort date
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:paths' path-completion yes
+zstyle ':completion:*:processes' command 'ps -afu $USER'
+zstyle ':znap:*:*' git-maintenance off
 
 # Load some plugins from oh-my-zsh
 znap source ohmyzsh/ohmyzsh plugins/vscode

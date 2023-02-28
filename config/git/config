@@ -27,7 +27,7 @@
 [diff "gpg"]
 	textconv = gpg --no-tty --decrypt
 [github]
-	user = yingzhou20
+	user = zhouying20
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
