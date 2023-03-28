@@ -26,8 +26,8 @@ link:
 	mkdir -p $(XDG_CONFIG_HOME) $(HOME)/.local
 	stow -v -t $(HOME) env
 	stow -v -t $(XDG_CONFIG_HOME) config
-	find $(XDG_CONFIG_HOME)/gnupg -type d -print0 | xargs -0 chmod 700
-	find $(XDG_CONFIG_HOME)/gnupg -type f -print0 | xargs -0 chmod 600
+	find -L $(XDG_CONFIG_HOME)/gnupg -type d -print0 | xargs -0 chmod -h 700
+	find -L $(XDG_CONFIG_HOME)/gnupg -type f -print0 | xargs -0 chmod 600
 
 unlink:
 	stow -v -D -t $(HOME) env
