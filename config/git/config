@@ -1,7 +1,7 @@
 [user]
 	name = zhouying
 	email = justying20@gmail.com
-	signingkey = 2C525FCE4405A2EF
+	signingkey = AE22B6B8D300D163
 [gpg]
 	program = gpg
 [commit]
