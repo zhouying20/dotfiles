@@ -8,7 +8,7 @@ $directory\
 $status\
 $character"""
 add_newline = true # Inserts a blank line between shell prompts
-scan_timeout = 20
+scan_timeout = 50
 command_timeout = 1000
 
 [[battery.display]]  # "bold red" style and discharging_symbol when capacity is between 0% and 20%
@@ -37,8 +37,8 @@ truncation_length = 5
 truncation_symbol = ".../"
 
 [git_branch]
-format = "[$symbol$branch]($style)"
-symbol = ""
+format = '[$symbol$branch(:$remote_branch)]($style) '
+symbol = ''
 
 [git_status]
 format = '([\[$ahead_behind$all_status\]]($style) )'
@@ -64,12 +64,12 @@ disabled = false
 [username]
 style_user = "bold purple"
 style_root = "bold red"
-format = "[$user]($style)"
+format = "[$user]($style) "
 show_always = true
 disabled = false
 
 [hostname]
 ssh_only = false
-format =  " ~(bold) [$hostname]($style) "
-style =   "bold green"
+format = "~(bold) [$hostname]($style) "
+style = "bold green"
 disabled = false
