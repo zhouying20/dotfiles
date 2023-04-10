@@ -14,16 +14,19 @@
 # We can autoload these functions by just their name, rather than by path,
 # because in 04-env.zsh, we added their parent dir to our $fpath.
 #
-# chpwd: Whenever we change dirs, prompt the new directory.
 # autoload -Uz add-zsh-hook precmd
-autoload -Uz chpwd
 
-chpwd  # Call once before the first prompt.
+# `znap prompt` can autoload our prompt function, because in 04-env.zsh, we
+# added its parent dir to our $fpath.
+# chpwd: Whenever we change dirs, prompt the new directory.
+# znap prompt launchpad
+# chpwd  # Call once before the first prompt.
 
 # Reduce startup time by making the left side of the primary prompt visible
 # *immediately.*
 # starship
-(( $+commands[starship] )) && { znap eval starship 'starship init zsh --print-full-init'; znap prompt starship }
+(( $+commands[starship] )) && znap eval starship 'starship init zsh --print-full-init'
+znap prompt starship
 
 # Auto-remove the right side of the prompt when you press enter.
 # That way, we'll have less clutter on screen.

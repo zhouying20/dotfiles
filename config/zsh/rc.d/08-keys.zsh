@@ -48,4 +48,4 @@ bindkey '^[v' describe-key-briefly
 } .sudo
 
 bindkey -s '\el' 'ls\n'   # [Esc-l] - run command: ls
-bindkey ' ' magic-space   # [Space] - don't do history expansion
+#bindkey ' ' magic-space   # [Space] - don't do history expansion

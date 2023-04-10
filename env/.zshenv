@@ -33,4 +33,4 @@ if [[ $VENDOR == apple ]]; then
   export SHELL_SESSIONS_DISABLE=1
 fi
 
-ZDOTDIR=${XDG_CONFIG_HOME:=~/.config}/zsh
+ZDOTDIR=${XDG_CONFIG_HOME}/zsh

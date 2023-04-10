@@ -6,7 +6,7 @@
 # For more info on each plugin, visit its repo at github.com/<plugin>
 # -a sets the variable's type to array.
 local -a plugins=(
-  zsh-users/zsh-completions
+  # zsh-users/zsh-completions           # Additional completion definitions
   zsh-users/zsh-autosuggestions       # Inline suggestions
   zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
@@ -42,16 +42,22 @@ done
 # If your connection is VERY slow, then you might want to disable
 # autocompletion completely and use only tab completion instead:
 #   zstyle ':autocomplete:*' async no
-zstyle ':autocomplete:*' min-input 1
+zstyle ':autocomplete:*' min-input 2
 zstyle ':autocomplete:*' insert-unambiguous yes
-zstyle ':autocomplete:*' widget-style menu-select
-zstyle ':autocomplete:*' recent-dirs zoxide
 zstyle ':autocomplete:*' fzf-completion yes
+zstyle -e ':autocomplete:*' list-lines 'reply=( $(( LINES / 2 )) )'
 zstyle ':completion:*' file-sort date
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:paths' path-completion yes
 zstyle ':completion:*:processes' command 'ps -afu $USER'
 zstyle ':znap:*:*' git-maintenance off
+
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
++autocomplete:recent-directories() {
+  reply=( ${(f)"$( zoxide query --list $1 2> /dev/null )"} )
+}
 
 # Load some plugins from oh-my-zsh
 znap source ohmyzsh/ohmyzsh plugins/vscode
@@ -65,5 +71,5 @@ fi
 # zoxide, must be added after compinit is called
 (( $+commands[zoxide] )) && znap eval zoxide 'zoxide init zsh'
 
-## direnv
+# direnv
 # (( $+commands[direnv] )) && znap eval direnv "$(readlink -f $commands[direnv]) hook zsh"

@@ -14,9 +14,21 @@
 # $VENDOR and $OSTYPE let us check what kind of machine we're on.
 if [[ $VENDOR == apple ]]; then
   # On macOS, store it in iCloud, so it syncs across multiple Macs.
-  HISTFILE=~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Share/zsh_history
+  HISTFILE="${HOME}/Library/Mobile Documents/com~apple~CloudDocs/Share/zsh_history"
+
+  # Sometimes (probably due to concurrency issues), when the histfile is kept in
+  # iCloud, it is empty when Zsh starts up. However, there should always be a
+  # backup file we can copy.
+
+  # Move the largest "$HISTFILE <number>" file to $HISTFILE.
+  # \ escapes/quotes the space behind it.
+  # (O):  Sort descending.
+  # (OL): Sort by size, descending.
+  local -a files=( $HISTFILE(|\ <->)(OL) )
+  [[ -r $files[1] ]] && [[ $files[1] != $HISTFILE ]] &&
+      mv $HISTFILE "${HISTFILE}_bak" && mv $files[1] $HISTFILE
 else
-  HISTFILE=${XDG_DATA_HOME:=~/.local/share}/zsh/history
+  HISTFILE=${XDG_DATA_HOME}/zsh/history
 fi
 
 # Just in case: If the parent directory doesn't exist, create it.
@@ -40,7 +52,6 @@ HISTSIZE=$(( 1.2 * SAVEHIST ))  # Zsh recommended value
 # hist_verify             Perform history expansion and reload the line into the editing buffer.
 setopt share_history hist_fcntl_lock hist_ignore_all_dups \
        hist_expire_dups_first hist_ignore_space hist_verify
-
 
 zshaddhistory() {
   local line=${1%%$'\n'}

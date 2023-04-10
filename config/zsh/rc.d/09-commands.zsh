@@ -9,6 +9,11 @@
 # Note that, unlike Bash, there's no need to inform Zsh's completion system
 # of your aliases. It will figure them out automatically.
 
+# Type '-' to return to your previous dir.
+alias -- -='cd -'
+# '--' signifies the end of options. Otherwise, '-=...' would be interpreted as
+# a flag.
+
 # These aliases enable us to paste example code into the terminal without the
 # shell complaining about the pasted prompt symbol.
 alias %= \$=

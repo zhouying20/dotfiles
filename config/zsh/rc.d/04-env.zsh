@@ -21,8 +21,6 @@ export GPG_TTY=$(tty)
 # Note that each value in an array is expanded separately. Thus, we can use ~
 # for $HOME in each $path entry.
 path=(
-    /home/linuxbrew/.linuxbrew/bin(N)
-    $XDG_DATA_HOME/linuxbrew/bin(N)   # (N): null if file doesn't exist
     $path
     ~/.local/bin
     /usr/local/bin
@@ -45,26 +43,31 @@ case $OS in
   ( darwin )
     # BSD flavour -> GNU flavour
     for pkg in "coreutils" "findutils" "gnu-sed" "gnu-tar" "grep"; do
-      path=( /usr/local/opt/$pkg/libexec/gnubin $path )
+      path=(
+        /usr/local/opt/$pkg/libexec/gnubin(N)
+        $path
+      )
     done
 
     export CONDA_HOME=/usr/local/Caskroom/miniconda/base
     path=(
-      $CONDA_HOME/bin
+      $CONDA_HOME/bin(N)
       $path
-      /Library/TeX/texbin
+      /Library/TeX/texbin(N)
       /Library/Apple/usr/bin
     )
   ;;
   ( linux )
     export DEBIAN_PREVENT_KEYBOARD_CHANGES=1
-    export skip_global_compinit=1
+    export skip_global_compinit=1 # zsh-autocomplete -> Additional step for Ubuntu
     export LANGUAGE=en
     export TZ=Asia/Shanghai
 
     export CONDA_HOME=$XDG_DATA_HOME/miniconda
     path=(
-      $CONDA_HOME/bin
+      $CONDA_HOME/bin(N)
+      /home/linuxbrew/.linuxbrew/bin(N)
+      $XDG_DATA_HOME/linuxbrew/bin(N)   # (N): null if file doesn't exist
       $path
     )
   ;;
