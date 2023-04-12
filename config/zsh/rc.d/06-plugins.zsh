@@ -6,7 +6,7 @@
 # For more info on each plugin, visit its repo at github.com/<plugin>
 # -a sets the variable's type to array.
 local -a plugins=(
-  # zsh-users/zsh-completions           # Additional completion definitions
+  zsh-users/zsh-completions           # Additional completion definitions
   zsh-users/zsh-autosuggestions       # Inline suggestions
   zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
@@ -52,8 +52,15 @@ zstyle ':completion:*:paths' path-completion yes
 zstyle ':completion:*:processes' command 'ps -afu $USER'
 zstyle ':znap:*:*' git-maintenance off
 
-bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+bindkey -M menuselect '\r' .accept-line
+# unset <-, -> in menuselect
+bindkey -M menuselect '\e[D' .backward-char
+bindkey -M menuselect '\eOD' .backward-char
+bindkey -M menuselect '\e[C' .forward-char
+bindkey -M menuselect '\eOC' .forward-char
 
 +autocomplete:recent-directories() {
   reply=( ${(f)"$( zoxide query --list $1 2> /dev/null )"} )
