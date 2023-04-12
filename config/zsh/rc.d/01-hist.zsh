@@ -10,6 +10,10 @@
 # znap clean && trs $XDG_CACHE_HOME/zsh-snap/eval/* to get a clean start
 #
 
+# Enable additional glob operators. (Globbing = pattern matching)
+# https://zsh.sourceforge.io/Doc/Release/Expansion.html#Filename-Generation
+setopt EXTENDED_GLOB
+
 # Tell zsh where to store history.
 # $VENDOR and $OSTYPE let us check what kind of machine we're on.
 if [[ $VENDOR == apple ]]; then
