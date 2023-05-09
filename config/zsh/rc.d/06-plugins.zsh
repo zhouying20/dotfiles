@@ -10,11 +10,11 @@ local -a plugins=(
   esc/conda-zsh-completion            # ZSH completion for conda
   zsh-users/zsh-completions           # Additional completion definitions
   zsh-users/zsh-autosuggestions       # Inline suggestions
-  zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
   marlonrichert/zsh-hist              # Edit history from the command line.
-  marlonrichert/zcolors               # Colors for completions and Git
+  # marlonrichert/zcolors               # Colors for completions and Git
   marlonrichert/zsh-edit              # Better keyboard shortcuts
+  zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
 )
 
 # Speed up the first startup by cloning all plugins in parallel.
@@ -46,21 +46,31 @@ zstyle ':autocomplete:*' min-input 2
 zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' fzf-completion yes
 zstyle -e ':autocomplete:*' list-lines 'reply=( $(( LINES / 2 )) )'
+
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' file-sort date
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:paths' path-completion yes
 zstyle ':completion:*:processes' command 'ps -afu $USER'
+
 zstyle ':znap:*:*' git-maintenance off
 
-bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 # bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
 # bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 bindkey -M menuselect '\r' .accept-line
+
 # unset <-, -> in menuselect
 bindkey -M menuselect '\e[D' .backward-char
 bindkey -M menuselect '\eOD' .backward-char
 bindkey -M menuselect '\e[C' .forward-char
 bindkey -M menuselect '\eOC' .forward-char
+
+# bindkey '^[b' backward-shell-word
+# bindkey '^[f' forward-shell-word
+bindkey '^[b' backward-subword
+bindkey '^[f' forward-subword
+bindkey '^[^?' backward-kill-subword
 
 +autocomplete:recent-directories() {
   reply=( ${(f)"$( zoxide query --list $1 2> /dev/null )"} )
