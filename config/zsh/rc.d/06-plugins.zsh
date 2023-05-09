@@ -6,15 +6,15 @@
 # For more info on each plugin, visit its repo at github.com/<plugin>
 # -a sets the variable's type to array.
 local -a plugins=(
+  le0me55i/zsh-extract
+  esc/conda-zsh-completion            # ZSH completion for conda
   zsh-users/zsh-completions           # Additional completion definitions
   zsh-users/zsh-autosuggestions       # Inline suggestions
   zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
-  marlonrichert/zsh-edit              # Better keyboard shortcuts
   marlonrichert/zsh-hist              # Edit history from the command line.
   marlonrichert/zcolors               # Colors for completions and Git
-  esc/conda-zsh-completion            # ZSH completion for conda
-  le0me55i/zsh-extract
+  marlonrichert/zsh-edit              # Better keyboard shortcuts
 )
 
 # Speed up the first startup by cloning all plugins in parallel.
@@ -67,7 +67,7 @@ bindkey -M menuselect '\eOC' .forward-char
 }
 
 # Load some plugins from oh-my-zsh
-znap source ohmyzsh/ohmyzsh plugins/vscode
+# znap source ohmyzsh/ohmyzsh plugins/vscode
 
 # iterm2_shell_integration
 if [ "${LC_TERMINAL-}" = "iTerm2" ]; then

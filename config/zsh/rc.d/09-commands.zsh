@@ -73,7 +73,7 @@ if [[ $VENDOR == apple ]]; then
 fi
 
 # Disable rm
-alias rm='echo "This is not the command you are looking for."; false'
+# alias rm='echo "This is not the command you are looking for."; false'
 # ts already set for tmux
 trs () {
   if ! command -v trash > /dev/null; then
