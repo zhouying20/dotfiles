@@ -2,10 +2,10 @@
 
 format="""
 $all\
+$status\
 $line_break\
 $conda\
 $directory\
-$status\
 $character"""
 add_newline = true # Inserts a blank line between shell prompts
 scan_timeout = 50
@@ -24,7 +24,7 @@ charging_symbol = "⚡️ "
 
 [character]                            # The name of the module we are configuring is "character"
 success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[✗](bold red)"
+error_symbol = "[➜](bold red)"
 vicmd_symbol = "[V](bold yellow)"
 
 [conda]
@@ -59,6 +59,12 @@ style = "bold blue"
 format = "via [🤖 $version]($style) "
 
 [status]
+symbol = '✘ '
+not_executable_symbol = '󰂭 '
+not_found_symbol = ' '
+sigint_symbol = '⏻ '
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
 disabled = false
 
 [username]
