@@ -10,11 +10,11 @@ local -a plugins=(
   esc/conda-zsh-completion            # ZSH completion for conda
   zsh-users/zsh-completions           # Additional completion definitions
   zsh-users/zsh-autosuggestions       # Inline suggestions
+  zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
   marlonrichert/zsh-hist              # Edit history from the command line.
+  # marlonrichert/zsh-edit              # Better keyboard shortcuts
   # marlonrichert/zcolors               # Colors for completions and Git
-  marlonrichert/zsh-edit              # Better keyboard shortcuts
-  zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
 )
 
 # Speed up the first startup by cloning all plugins in parallel.
