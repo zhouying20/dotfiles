@@ -63,7 +63,12 @@ case $OS in
     export LANGUAGE=en
     export TZ=Asia/Shanghai
 
-    export CONDA_HOME=$XDG_DATA_HOME/miniconda
+    for conda_path in "$XDG_DATA_HOME/miniconda" "~/miniconda" "/opt/conda"; do
+      if [[ -d "$conda_path" ]]; then
+        export CONDA_HOME=$conda_path
+        break
+      fi
+    done
     path=(
       $CONDA_HOME/bin(N)
       /home/linuxbrew/.linuxbrew/bin(N)

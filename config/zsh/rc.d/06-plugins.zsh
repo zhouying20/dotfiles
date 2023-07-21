@@ -13,7 +13,7 @@ local -a plugins=(
   zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
   marlonrichert/zsh-hist              # Edit history from the command line.
-  # marlonrichert/zsh-edit              # Better keyboard shortcuts
+  marlonrichert/zsh-edit              # Better keyboard shortcuts
   # marlonrichert/zcolors               # Colors for completions and Git
 )
 
@@ -37,11 +37,11 @@ done
 # This is fine locally on modern machines, but if you're working through a slow
 # ssh connection, you might want to add a slight delay before the
 # autocompletion kicks in:
-#   zstyle ':autocomplete:*' min-delay 0.5  # seconds
+# zstyle ':autocomplete:*' min-delay 0.5  # seconds
 #
 # If your connection is VERY slow, then you might want to disable
 # autocompletion completely and use only tab completion instead:
-#   zstyle ':autocomplete:*' async no
+# zstyle ':autocomplete:*' async no
 zstyle ':autocomplete:*' min-input 2
 zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' fzf-completion yes
@@ -66,11 +66,9 @@ bindkey -M menuselect '\eOD' .backward-char
 bindkey -M menuselect '\e[C' .forward-char
 bindkey -M menuselect '\eOC' .forward-char
 
-# bindkey '^[b' backward-shell-word
-# bindkey '^[f' forward-shell-word
-bindkey '^[b' backward-subword
-bindkey '^[f' forward-subword
-bindkey '^[^?' backward-kill-subword
+# bindkey '^[b' backward-subword
+# bindkey '^[f' forward-subword
+# bindkey '^[^?' backward-kill-subword
 
 +autocomplete:recent-directories() {
   reply=( ${(f)"$( zoxide query --list $1 2> /dev/null )"} )

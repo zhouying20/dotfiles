@@ -26,7 +26,7 @@
 # *immediately.*
 # starship
 (( $+commands[starship] )) && znap eval starship 'starship init zsh --print-full-init'
-# znap prompt starship
+znap prompt
 
 # Auto-remove the right side of the prompt when you press enter.
 # That way, we'll have less clutter on screen.
