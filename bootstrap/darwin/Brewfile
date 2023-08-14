@@ -7,18 +7,22 @@ tap "homebrew/core"
 tap "homebrew/services"
 brew "aria2"
 brew "coreutils"
+brew "harfbuzz"
 brew "ffmpeg"
 brew "findutils"
 brew "fzf"
+brew "git"
 brew "gnu-sed"
 brew "gnu-tar"
 brew "gnupg"
 brew "grep"
 brew "mackup"
-brew "mas"
+brew "nali"
 brew "node"
 brew "pinentry-mac"
-brew "ruby"
+brew "poppler"
+brew "sevenzip"
+brew "smartmontools"
 brew "starship"
 brew "stow"
 brew "tmux"
@@ -28,15 +32,16 @@ brew "vivid"
 brew "wget"
 brew "zoxide"
 brew "zsh"
+cask "1password"
 cask "alfred"
 cask "alt-tab"
 cask "avibrazil-rdm"
 cask "clashx-pro"
 cask "coconutbattery"
 cask "dozer"
+cask "fliqlo"
 cask "font-jetbrains-mono-nerd-font"
 cask "free-download-manager"
-cask "github"
 cask "google-chrome"
 cask "iina"
 cask "iterm2"
@@ -47,31 +52,11 @@ cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "miniconda"
 cask "mongodb-compass"
-cask "monitorcontrol"
 cask "notion"
 cask "pdf-expert"
 cask "postman"
-cask "qbittorrent"
 cask "rectangle"
 cask "tencent-meeting"
 cask "typora"
 cask "visual-studio-code"
-cask "zotero"
-mas "1Password 7", id: 1333542190
-mas "AdGuard for Safari", id: 1440147259
-mas "Craft", id: 1487937127
-mas "Feishu", id: 1551632588
-mas "Fluent Reader", id: 1520907427
-mas "Grammarly for Safari", id: 1462114288
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft OneNote", id: 784801555
-mas "Microsoft Outlook", id: 985367838
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
-mas "NeteaseMusic", id: 944848654
-mas "Octotree", id: 1457450145
-mas "OneTab", id: 1540160809
-mas "QQ", id: 451108668
-mas "Tampermonkey", id: 1482490089
-mas "Telegram", id: 747648890
-mas "WeChat", id: 836500024
+cask "zoom"
