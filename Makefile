@@ -14,7 +14,7 @@ all: setup link
 	mkdir -p $(XDG_CACHE_HOME)/zsh $(XDG_CACHE_HOME)/ssh
 
 setup:
-	cd $(DOTFILES_DIR)/bootstrap/$(OS) && . ./setup.sh
+	cd $(DOTFILES_DIR)/bootstrap/$(OS) && . ./init.sh
 
 link:
 	for f in $$(ls -A $(DOTFILES_DIR)/env); do \

@@ -16,4 +16,12 @@ caffeinate -s -w $$ &
 # install apps from Brewfile
 brew bundle -v --no-lock || true
 
-### TODO
+# Mackup restore
+MACKUP_DIR="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Mackup"
+if [[ -f "$MACKUP_DIR/.mackup.cfg" && ! -L "$HOME/.mackup.cfg" ]]; then
+    cp -v  "$MACKUP_DIR/.mackup.cfg" $HOME
+    cp -rv "$MACKUP_DIR/.mackup" $HOME
+    mackup restore -f
+else
+    echo "mackup.cfg does not exist, please perform the recovery manually later."
+fi
