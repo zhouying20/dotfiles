@@ -139,12 +139,12 @@ pclr() {
 }
 
 proxy () {
-  local p_server=${1:-127.0.0.1}
-  local p_port=${2:-18123}
+  local proxy_server=${1:-'127.0.0.1'}
+  local http_port=${2:-'18123'}
   export http_proxy=http://$p_server:$p_port
   export https_proxy=http://$p_server:$p_port
   export all_proxy=socks5://$p_server:$p_port
-  export no_proxy='localhost,127.0.0.0/8,*.local,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12'
+  export no_proxy='localhost,*.local,127.0.0.0/8,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12'
   echo "Proxy on"
 }
 noproxy () {
@@ -160,6 +160,4 @@ noproxy () {
 # fi
 if nc -z -w 2 127.0.0.1 18123 > /dev/null 2>&1; then # prefer to local
   proxy &> /dev/null
-elif nc -z -w 2 192.168.14.70 7890 > /dev/null 2>&1; then
-  proxy 192.168.14.70 7890 &> /dev/null
 fi
