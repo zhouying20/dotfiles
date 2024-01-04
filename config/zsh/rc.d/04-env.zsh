@@ -40,24 +40,34 @@ fpath=(
 
 local OS=$(uname -s | tr A-Z a-z)
 case $OS in
-  ( darwin )
+  ( 'darwin' )
+    case $(uname -m) in
+      ( 'arm64' )
+        brew_base=/opt/homebrew
+      ;;
+      ( 'x86_64' )
+        brew_base=/usr/local
+      ;;
+    esac
+
     # BSD flavour -> GNU flavour
     for pkg in "coreutils" "findutils" "gnu-sed" "gnu-tar" "grep"; do
       path=(
-        /usr/local/opt/$pkg/libexec/gnubin(N)
+        $brew_base/opt/$pkg/libexec/gnubin(N)
         $path
       )
     done
 
-    export CONDA_HOME=/usr/local/Caskroom/miniconda/base
+    export CONDA_HOME="$brew_base/Caskroom/miniconda/base"
     path=(
       $CONDA_HOME/bin(N)
+      $brew_base/bin(N)
       $path
       /Library/TeX/texbin(N)
       /Library/Apple/usr/bin
     )
   ;;
-  ( linux )
+  ( 'linux' )
     export DEBIAN_PREVENT_KEYBOARD_CHANGES=1
     export skip_global_compinit=1 # zsh-autocomplete -> Additional step for Ubuntu
     export LANGUAGE=en
