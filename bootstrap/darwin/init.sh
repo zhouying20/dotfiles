@@ -10,11 +10,13 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 caffeinate -s -w $$ &
 
 # install homebrew
-[[ command -v brew >/dev/null ]] || \
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | /bin/bash
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 # install apps from Brewfile
-brew bundle -v --no-lock || true
+brew bundle -v || true
 
 # iCloud ssh restore
 ssh_src="${HOME}/Library/Mobile Documents/com~apple~CloudDocs/Share/.ssh/config"
