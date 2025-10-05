@@ -1,11 +1,11 @@
 [user]
 	name = zhouying
-	email = justying20@gmail.com
+	email = yingzhounlp@gmail.com
 	signingkey = AE22B6B8D300D163
 [gpg]
 	program = gpg
 [commit]
-	gpgsign = true
+	gpgsign = false
 [core]
 	autocrlf = false
 	editor = code --wait

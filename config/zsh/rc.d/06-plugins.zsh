@@ -14,7 +14,6 @@ local -a plugins=(
   marlonrichert/zsh-autocomplete      # Real-time type-ahead completion, set zcompdump to $XDG_CACHE_HOME/zsh
   marlonrichert/zsh-hist              # Edit history from the command line.
   marlonrichert/zsh-edit              # Better keyboard shortcuts
-  # marlonrichert/zcolors               # Colors for completions and Git
 )
 
 # Speed up the first startup by cloning all plugins in parallel.
@@ -32,47 +31,43 @@ done
 # znap eval zcolors zcolors   # Extra init code needed for zcolors.
 # znap eval zcolors "zcolors ${(q)LS_COLORS}"
 
-# Configure plugins after installed them
-# The Zsh Autocomplete plugin sends *a lot* of characters to your terminal.
-# This is fine locally on modern machines, but if you're working through a slow
-# ssh connection, you might want to add a slight delay before the
-# autocompletion kicks in:
-# zstyle ':autocomplete:*' min-delay 0.5  # seconds
-#
+# Plugins configuration
+zstyle ':znap:*:*' git-maintenance off
+
 # If your connection is VERY slow, then you might want to disable
 # autocompletion completely and use only tab completion instead:
 # zstyle ':autocomplete:*' async no
 zstyle ':autocomplete:*' min-input 2
-zstyle ':autocomplete:*' insert-unambiguous yes
-zstyle ':autocomplete:*' fzf-completion yes
-zstyle -e ':autocomplete:*' list-lines 'reply=( $(( LINES / 2 )) )'
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+zstyle ':autocomplete:*' timeout 2.0  # seconds (float)
+# Note: -e lets you specify a dynamically generated value.
+zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 2 )) )'
 
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' expand no
+zstyle ':completion:*' completer _complete _correct _approximate
 zstyle ':completion:*' file-sort date
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:paths' path-completion yes
 zstyle ':completion:*:processes' command 'ps -afu $USER'
 
-zstyle ':znap:*:*' git-maintenance off
+# Make Tab and ShiftTab cycle completions on the command line
+# -> use 'menu-select' to iter menu
+bindkey '^I' menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
 
-# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+# Make Tab and ShiftTab change the selection in the menu instead of Exit Tab selection
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
+
+# Make Enter always submit the command line
 bindkey -M menuselect '\r' .accept-line
 
 # unset <-, -> in menuselect
-bindkey -M menuselect '\e[D' .backward-char
-bindkey -M menuselect '\eOD' .backward-char
-bindkey -M menuselect '\e[C' .forward-char
-bindkey -M menuselect '\eOC' .forward-char
-
-# bindkey '^[b' backward-subword
-# bindkey '^[f' forward-subword
-# bindkey '^[^?' backward-kill-subword
-
-+autocomplete:recent-directories() {
-  reply=( ${(f)"$( zoxide query --list $1 2> /dev/null )"} )
-}
+bindkey -M menuselect '^[[D' .backward-char '^[OD' .backward-char
+bindkey -M menuselect '^[[C' .forward-char '^[OC' .forward-char
 
 # Load some plugins from oh-my-zsh
 # znap source ohmyzsh/ohmyzsh plugins/vscode
@@ -82,9 +77,3 @@ if [ "${LC_TERMINAL-}" = "iTerm2" ]; then
   path=( $path $HOME/.local/bin/iterm2 )
   znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 fi
-
-# zoxide, must be added after compinit is called
-(( $+commands[zoxide] )) && znap eval zoxide 'zoxide init zsh'
-
-# direnv
-# (( $+commands[direnv] )) && znap eval direnv "$(readlink -f $commands[direnv]) hook zsh"

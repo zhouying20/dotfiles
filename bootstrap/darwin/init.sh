@@ -16,12 +16,18 @@ caffeinate -s -w $$ &
 # install apps from Brewfile
 brew bundle -v --no-lock || true
 
-# Mackup restore
-MACKUP_DIR="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Mackup"
-if [[ -f "$MACKUP_DIR/.mackup.cfg" && ! -L "$HOME/.mackup.cfg" ]]; then
-    cp -v  "$MACKUP_DIR/.mackup.cfg" $HOME
-    cp -rv "$MACKUP_DIR/.mackup" $HOME
-    mackup restore -f
-else
-    echo "mackup.cfg does not exist, please perform the recovery manually later."
+# iCloud ssh restore
+ssh_src="${HOME}/Library/Mobile Documents/com~apple~CloudDocs/Share/.ssh/config"
+if [[ -f $ssh_src ]]; then
+  mkdir -p "${HOME}/.ssh" && ln -sf "${ssh_src}" "${HOME}/.ssh/config"
 fi
+
+# Mackup restore
+# MACKUP_DIR="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Mackup"
+# if [[ -f "$MACKUP_DIR/.mackup.cfg" && ! -L "$HOME/.mackup.cfg" ]]; then
+#     cp -v  "$MACKUP_DIR/.mackup.cfg" $HOME
+#     cp -rv "$MACKUP_DIR/.mackup" $HOME
+#     mackup restore -f
+# else
+#     echo "mackup.cfg does not exist, please perform the recovery manually later."
+# fi

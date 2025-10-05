@@ -154,10 +154,6 @@ noproxy () {
   unset no_proxy
   echo "Proxy off"
 }
-# local proxy_port=18123
-# if lsof -Pi:$proxy_port -sTCP:LISTEN > /dev/null; then # check if proxy port opened
+# if nc -z -w 2 127.0.0.1 18123 > /dev/null 2>&1; then # prefer to local
 #   proxy &> /dev/null
 # fi
-if nc -z -w 2 127.0.0.1 18123 > /dev/null 2>&1; then # prefer to local
-  proxy &> /dev/null
-fi

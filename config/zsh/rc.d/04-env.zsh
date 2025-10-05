@@ -119,3 +119,5 @@ export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 ### Hardcoded
 ## vim
 export VIMINIT="set nocp | source $XDG_CONFIG_HOME/vim/vimrc"
+
+(( $+commands[rbenv] )) && eval "$(rbenv init - --no-rehash zsh)"
