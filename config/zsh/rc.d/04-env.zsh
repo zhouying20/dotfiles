@@ -69,7 +69,6 @@ case $OS in
   ;;
   ( 'linux' )
     export DEBIAN_PREVENT_KEYBOARD_CHANGES=1
-    export skip_global_compinit=1 # zsh-autocomplete -> Additional step for Ubuntu
     export LANGUAGE=en
     export TZ=Asia/Shanghai
 

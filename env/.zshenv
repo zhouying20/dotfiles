@@ -33,4 +33,8 @@ if [[ $VENDOR == apple ]]; then
   export SHELL_SESSIONS_DISABLE=1
 fi
 
+# Ubuntu runs compinit in /etc/zsh/zshrc, before our .zshrc loads plugins.
+# Let znap/zsh-autocomplete initialize completion after all plugins are loaded.
+skip_global_compinit=1
+
 ZDOTDIR=${XDG_CONFIG_HOME}/zsh
